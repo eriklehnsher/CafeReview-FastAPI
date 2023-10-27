@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+motor
+sendgrid
+python-jose[cryptography]
+python-multipart
+passlib
+jinja2
+pillow
+bcrypt
+pydantic[email]
+joe
