@@ -6,7 +6,7 @@ from models.pyObjectId import *
 
 
 class UserInDB(BaseModel):
-   
+    id: PyObjectId = Field(alias="_id")
     username: str = Field(...)
     email: str = Field(...)
     password: str = Field(...)

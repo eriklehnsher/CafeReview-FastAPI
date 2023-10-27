@@ -6,7 +6,7 @@ from models.pyObjectId import *
 
 
 class UserInDB(BaseModel):
-   
+    id: PyObjectId = Field(alias="_id")
     username: str = Field(...)
     email: str = Field(...)
     password: str = Field(...)
@@ -15,10 +15,6 @@ class UserInDB(BaseModel):
     phone: str = Field(...)
     address: str = Field(...)
     createdAt: str = Field(...)
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
-
 
 class UserRegister(BaseModel):
     username: str = Field(...)
@@ -27,10 +23,7 @@ class UserRegister(BaseModel):
     fullName: str = Field(...)
     phone: str = Field(...)
     address: str = Field(...)
-    class Config:
-        allow_population_by_field_name = True
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
+
 class UserLogin(BaseModel):
     email: str = Field(...)
     password: str = Field(...)
@@ -40,10 +33,6 @@ class UserModel(BaseModel):
     email: str = Field(...)
     password: str = Field(...)
     role: str = Field(...)
-    class Config:
-        allow_population_by_field_name = True
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
     
     
 class UpdateUserModel(BaseModel):
@@ -51,15 +40,9 @@ class UpdateUserModel(BaseModel):
     email: str = Field(...)
     password: str = Field(...)
     role: str = Field(...)
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
     
     
 class UserUpdateRequest(BaseModel):
     full_name: str = None
     address: str = None
     username: str = None
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {ObjectId: str}
