@@ -108,33 +108,3 @@ async def show_user(email: str):
     if (user := await Users_db.find_one({"email": email})) is not None:
         return user
     raise HTTPException(status_code=404, detail="user {email} not found")
-
-
-@router.put("/user/update/{email}", response_model=UserInDB)
-async def update_user(email: str, updated_user: UserInDB):
-    updated_data = updated_user.model_dump(exclude_unset=True)
-
-    # Các trường khác cần cập nhật
-    updated_data = {
-        "username":updated_data.get("username"),
-        "email":updated_data.get("email"),
-        "fullName": updated_data.get("fullName"),
-        "phone": updated_data.get("phone"),
-        "address": updated_data.get("address"),
-        "educate": updated_data.get("educate"),
-        "languages": updated_data.get("languages"),
-        "sparkles": updated_data.get("sparkles"),
-        "jobs": updated_data.get("jobs"),
-        "birthdate": updated_data.get("birthdate"),
-        "introduce": updated_data.get("introduce"),
-    }
-
-    result = await Users_db.update_one({"email": email}, {"$set": updated_data})
-
-    if result.matched_count == 1 and result.modified_count == 1:
-        updated_user = await Users_db.find_one({"email": email})
-        return updated_user
-
-    raise HTTPException(
-        status_code=404, detail=f"User with email {email} not found or not updated"
-    )

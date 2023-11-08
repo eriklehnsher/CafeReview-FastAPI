@@ -15,12 +15,6 @@ class UserInDB(BaseModel):
     fullName: str = Field(...)
     phone: str = Field(...)
     address: str = Field(...)
-    educate: str = Field(...)
-    languages: str = Field(...)
-    sparkles: str = Field(...)
-    jobs: str = Field(...)
-    birthdate: str = Field(...)
-    introduce: str = Field(...)
 
 class UserRegister(BaseModel):
     username: str = Field(...)

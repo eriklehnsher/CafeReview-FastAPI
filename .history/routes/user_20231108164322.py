@@ -112,7 +112,7 @@ async def show_user(email: str):
 
 @router.put("/user/update/{email}", response_model=UserInDB)
 async def update_user(email: str, updated_user: UserInDB):
-    updated_data = updated_user.model_dump(exclude_unset=True)
+    updated_data = updated_user.dict(exclude_unset=True)
 
     # Các trường khác cần cập nhật
     updated_data = {
